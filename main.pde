@@ -3,15 +3,15 @@ float w;
 int[][][] cells; //[x][y][count, mines, hasBeenRevealed, Flagged]
 int count;
 int foundMines;
-boolean gameStart;
 
 void setup(){
   size(1000,500);
   num = 10;
-  numMines = 15;
+  numMines = 30;
   m = numMines;
   w = height/num;
   cells = new int[2*num][num][4];
+  placeMines();
   countMines();
   textSize(30);
 }
@@ -73,7 +73,9 @@ void display(){
       if(cells[i][j][2] == 1 && cells[i][j][3]==0){
 
         fill(220);
-        if(cells[i][j][1] == 1){
+        if(cells[i][j][1] == 0){
+          fill(255);
+        } else {
           fill(0);
         }        
         rect(i*w, j*w, w, w);
